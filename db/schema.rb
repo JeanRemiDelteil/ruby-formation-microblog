@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_20_081708) do
+ActiveRecord::Schema.define(version: 2020_11_20_101604) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_081708) do
     t.string "body"
     t.integer "author_id"
     t.boolean "is_trashed", default: false
+    t.integer "status"
   end
 
   create_table "authors", force: :cascade do |t|
