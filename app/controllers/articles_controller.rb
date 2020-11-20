@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
     article.title = params[:title] if params[:title]
     article.body = params[:body] if params[:body]
 
-    article.save
+    article.save!
 
     # article.update!(
     #   title: params[:title],

@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   validates :body, presence: true
 
   belongs_to :author
+  has_many :comments
 
   enum status: %i(draft published)
 

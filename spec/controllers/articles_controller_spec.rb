@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
-  let(:author) { Author.create!(name: 'John Doe') }
+  include ResponseHelper
 
-  def parsed_response
-    JSON.parse(response.body)
-  end
+  let(:author) { Author.create!(name: 'John Doe') }
 
   describe "#index" do
     it 'returns all articles' do

@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#say_hi'
 
-  resources :articles, only: %i(index create show update destroy)
+  resources :articles, only: %i(index create show update destroy) do
+    resources :comments, only: %i[index create show update destroy]
+  end
 end
