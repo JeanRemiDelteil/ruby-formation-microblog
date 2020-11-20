@@ -3,28 +3,33 @@ class ArticlesController < ApplicationController
 
   def index
     articles = if params[:title]
-                 Article.where("title LIKE '%#{params[:title]}%'")
-               else
-                 Article.all
-               end
+      Article.where("title LIKE '%#{params[:title]}%'")
+    else
+      Article.all
+    end
 
     render json: articles
   end
 
   # POST /articles
   def create
-    new_article = Article.create({ title: params[:title] })
+    new_article = Article.create({
+      title: params[:title],
+      body: params[:body],
+      author_id: params[:author_id],
+    })
 
     render json: new_article
   end
 
   # GET /articles/:id
   def show
-    render json: {
-      id: article.id,
-      title: article.title,
-      description: "#{article.id} - #{article.created_at} - title: \"#{article.title}\""
-    }
+    # render json: {
+    #   id: article.id,
+    #   title: article.title,
+    #   description: "#{article.id} - #{article.created_at} - title: \"#{article.title}\""
+    # }
+    render json: article
   end
 
   # PUT /articles/:id
@@ -33,6 +38,11 @@ class ArticlesController < ApplicationController
     article.body = params[:body] if params[:body]
 
     article.save
+
+    # article.update!(
+    #   title: params[:title],
+    #   body: params[:body],
+    # )
 
     render json: article
   end
